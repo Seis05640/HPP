@@ -11,6 +11,23 @@ model = joblib.load("model/model.pkl")
 scaler = joblib.load("model/scaler.pkl")
 features = joblib.load("model/features.pkl")
 
+@app.route("/analytics")
+def analytics():
+    df = pd.read_csv("modified_train.csv")
+    
+    import matplotlib.pyplot as plt
+    import seaborn as sns
+
+    # Plot and save image
+    plt.figure(figsize=(8, 6))
+    sns.histplot(df["SalePrice"], bins=50, color='purple')
+    plt.title("House Price Distribution")
+    plt.tight_layout()
+    plt.savefig("static/sale_price_dist.png")
+    plt.close()
+
+    return render_template("analytics.html")
+
 
 @app.route("/")
 def index():
