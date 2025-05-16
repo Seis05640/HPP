@@ -13,7 +13,7 @@ features = joblib.load("model/features.pkl")
 
 @app.route("/analytics")
 def analytics():
-    df = pd.read_csv("modified_train.csv")
+    df = pd.read_csv("train.csv")
     
     import matplotlib.pyplot as plt
     import seaborn as sns
